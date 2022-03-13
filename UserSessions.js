@@ -20,7 +20,6 @@ class UserSessions {
 
   getActivities = async () => {
     try {
-      console.log(process.env);
       const stream = await fetch(`${process.env.API_BASE_URL}/`, {
         headers: {
           'Content-Type': 'application/json',
@@ -41,10 +40,10 @@ class UserSessions {
         body: JSON.stringify({ "user_sessions": userSessions }),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Basic ${credentials}`
+          'Authorization': `Basic ${process.env.API_CREDENTIALS}`
         }
       });
-      return await stream.json();
+      console.log(stream.status);
     } catch (err) {
       console.error(err);
     }
